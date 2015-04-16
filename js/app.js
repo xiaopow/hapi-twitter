@@ -12,7 +12,7 @@ $(document).ready(function(){
   function createUser(username, email, password) {
     var newRequest = new Request();
     newRequest['type'] = 'POST';
-    newRequest['url'] = 'http://localhost:3000/users';
+    newRequest['url'] = 'http://harryquotes-216807.apse1.nitrousbox.com/users';
     newRequest['data'] = {
       'user': {
         'username': username,
@@ -38,7 +38,7 @@ $(document).ready(function(){
   function signInUser(username, password) {
     var newRequest = new Request();
     newRequest['type'] = 'POST';
-    newRequest['url'] = 'http://localhost:3000/sessions';
+    newRequest['url'] = 'http://harryquotes-216807.apse1.nitrousbox.com/sessions';
     newRequest['data'] = {
       'user': {
         'username': username,
@@ -63,17 +63,22 @@ $(document).ready(function(){
 
   var backgroundURL = [
     'http://cdn.c.photoshelter.com/img-get/I0000gBldXyJY.Gg/s/750/750/Water-Festival-in-Bangkok-Thailand-18.jpg',
-    'http://result2015.net/wp-content/uploads/2015/04/kkkkkkk.jpg'
+    'http://cdn.c.photoshelter.com/img-get/I0000Td1dnHXqYao/s/750/750/Water-Festival-in-Bangkok-Thailand-3.jpg'
   ]
   var backStep = 0;
 
   var backgroundTimer = setInterval(function(){
-    var imageUrl = backgroundURL[backStep];
-    $('body').css('background-image', 'url(' + imageUrl + ')');
     backStep++;
     if(backStep == backgroundURL.length) { 
       backStep = 0; 
     };
-  }, 2000);
+    var imageUrl = backgroundURL[backStep];
+    setTimeout(function(){
+      $('#homeback').fadeOut(1000, function(){
+        $('#homeback').css('background-image', 'url(' + imageUrl + ')');
+        $('#homeback').fadeIn(1000);
+      });
+    });
+  }, 10000);
 
 });

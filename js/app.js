@@ -12,7 +12,7 @@ $(document).ready(function(){
   function createUser(username, email, password) {
     var newRequest = new Request();
     newRequest['type'] = 'POST';
-    newRequest['url'] = 'localhost:3000/users';
+    newRequest['url'] = 'http://localhost:3000/users';
     newRequest['data'] = {
       'user': {
         'username': username,
@@ -38,7 +38,7 @@ $(document).ready(function(){
   function signInUser(username, password) {
     var newRequest = new Request();
     newRequest['type'] = 'POST';
-    newRequest['url'] = 'localhost:3000/sessions';
+    newRequest['url'] = 'http://localhost:3000/sessions';
     newRequest['xhrFields'] = { 'withCredentials': true };
     newRequest['data'] = {
       'user': {

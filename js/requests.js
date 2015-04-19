@@ -11,7 +11,7 @@
 
   //------------------ Create User --------------------
 
-  function createUser(username, email, password) {
+  function createUser(username, email, password, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'POST';
     newRequest['url'] = 'http://localhost:3000/users';
@@ -24,22 +24,15 @@
     };
     newRequest['success'] = function(response){
       console.log(response);
+      return callback();
     };
 
     $.ajax(newRequest);
   };
 
-  $(document).on('click', '#sign-up-btn', function(e){
-    e.preventDefault();
-    var usernameInput = $('.sign-up .username').val();
-    var emailInput = $('.sign-up .email').val();
-    var passwordInput = $('.sign-up .password').val();
-    createUser(usernameInput, emailInput, passwordInput);
-  });
-
   //------------------ Signing In -----------------------
 
-  function signInUser(username, password) {
+  function signInUser(username, password, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'POST';
     newRequest['url'] = 'http://localhost:3000/sessions';
@@ -52,27 +45,37 @@
     };
     newRequest['success'] = function(response){
       console.log(response);
+      return callback();
     };
 
     $.ajax(newRequest);
   };
 
-  $(document).on('click', '#log-in-btn', function(e){
-    e.preventDefault();
-    var usernameInput = $('.log-in .username').val();
-    var passwordInput = $('.log-in .password').val();
-    signInUser(usernameInput, passwordInput);
-  });
+  //------------------- Logging Out ---------------------
+
+  function logoutUser(callback) {
+    var newRequest = new Request();
+    newRequest['type'] = 'DELETE';
+    newRequest['url'] = 'http://localhost:3000/sessions';
+    newRequest['xhrFields'] = { 'withCredentials': true };
+    newRequest['success'] = function(response){
+      console.log(response);
+      return callback();
+    };
+
+    $.ajax(newRequest);
+  }
 
   //------------------ Authenticate ---------------------
 
-  function authenticate() {
+  function authenticate(callback) {
     var newRequest = new Request();
     newRequest['type'] = 'GET';
     newRequest['url'] = 'http://localhost:3000/authenticated';
     newRequest['xhrFields'] = { 'withCredentials': true };
     newRequest['success'] = function(response){
       console.log(response);
+      return callback(response);
     };
 
     $.ajax(newRequest);
@@ -81,7 +84,7 @@
   //---------------------- Tweets -----------------------
 
   //------------------- Post a Tweet --------------------
-  function postTweet(msg) {
+  function postTweet(msg, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'POST';
     newRequest['url'] = 'http://localhost:3000/tweets';
@@ -93,6 +96,7 @@
     };
     newRequest['success'] = function(response){
       console.log(response);
+      return callback({'success': true});
     };
 
     $.ajax(newRequest);
@@ -100,12 +104,13 @@
 
   //------------------- Get all Tweets ------------------
 
-  function getAllTweets() {
+  function getAllTweets(callback) {
     var newRequest = new Request();
     newRequest['type'] = 'GET';
     newRequest['url'] = 'http://localhost:3000/tweets';
     newRequest['success'] = function(response){
-      console.log(response);
+      // console.log(response);
+      return callback(response);
     };
 
     $.ajax(newRequest);
@@ -126,12 +131,13 @@
 
   //------------- Get All Tweets by Username -------------
 
-  function getUserTweets(username) {
+  function getUserTweets(username, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'GET';
     newRequest['url'] = 'http://localhost:3000/users/' + username + '/tweets';
     newRequest['success'] = function(response){
       console.log(response);
+      return callback(response);
     };
 
     $.ajax(newRequest);
@@ -139,13 +145,14 @@
 
   //---------------- Delete a tweet by ID ----------------
 
-  function deleteOneTweet(id) {
+  function deleteOneTweet(id, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'DELETE';
     newRequest['url'] = 'http://localhost:3000/tweets/' + id;
     newRequest['xhrFields'] = { 'withCredentials': true };
     newRequest['success'] = function(response){
       console.log(response);
+      return callback();
     };
 
     $.ajax(newRequest);

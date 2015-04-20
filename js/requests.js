@@ -14,7 +14,7 @@
   function createUser(username, email, password, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'POST';
-    newRequest['url'] = 'http://localhost:3000/users';
+    newRequest['url'] = 'http://localhost:80/users';
     newRequest['data'] = {
       'user': {
         'username': username,
@@ -35,7 +35,7 @@
   function signInUser(username, password, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'POST';
-    newRequest['url'] = 'http://localhost:3000/sessions';
+    newRequest['url'] = 'http://localhost:80/sessions';
     newRequest['xhrFields'] = { 'withCredentials': true };
     newRequest['data'] = {
       'user': {
@@ -56,7 +56,7 @@
   function logoutUser(callback) {
     var newRequest = new Request();
     newRequest['type'] = 'DELETE';
-    newRequest['url'] = 'http://localhost:3000/sessions';
+    newRequest['url'] = 'http://localhost:80/sessions';
     newRequest['xhrFields'] = { 'withCredentials': true };
     newRequest['success'] = function(response){
       console.log(response);
@@ -71,7 +71,7 @@
   function authenticate(callback) {
     var newRequest = new Request();
     newRequest['type'] = 'GET';
-    newRequest['url'] = 'http://localhost:3000/authenticated';
+    newRequest['url'] = 'http://localhost:80/authenticated';
     newRequest['xhrFields'] = { 'withCredentials': true };
     newRequest['success'] = function(response){
       console.log(response);
@@ -87,7 +87,7 @@
   function postTweet(msg, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'POST';
-    newRequest['url'] = 'http://localhost:3000/tweets';
+    newRequest['url'] = 'http://localhost:80/tweets';
     newRequest['xhrFields'] = { 'withCredentials': true };
     newRequest['data'] = {
       'tweet': {
@@ -107,7 +107,7 @@
   function getAllTweets(callback) {
     var newRequest = new Request();
     newRequest['type'] = 'GET';
-    newRequest['url'] = 'http://localhost:3000/tweets';
+    newRequest['url'] = 'http://localhost:80/tweets';
     newRequest['success'] = function(response){
       return callback(response);
     };
@@ -120,7 +120,7 @@
   function getOneTweet(id) {
     var newRequest = new Request();
     newRequest['type'] = 'GET';
-    newRequest['url'] = 'http://localhost:3000/tweets/' + id;
+    newRequest['url'] = 'http://localhost:80/tweets/' + id;
     newRequest['success'] = function(response){
       console.log(response);
     };
@@ -133,7 +133,7 @@
   function getUserTweets(username, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'GET';
-    newRequest['url'] = 'http://localhost:3000/users/' + username + '/tweets';
+    newRequest['url'] = 'http://localhost:80/users/' + username + '/tweets';
     newRequest['success'] = function(response){
       console.log(response);
       return callback(response);
@@ -147,7 +147,7 @@
   function deleteOneTweet(id, callback) {
     var newRequest = new Request();
     newRequest['type'] = 'DELETE';
-    newRequest['url'] = 'http://localhost:3000/tweets/' + id;
+    newRequest['url'] = 'http://localhost:80/tweets/' + id;
     newRequest['xhrFields'] = { 'withCredentials': true };
     newRequest['success'] = function(response){
       console.log(response);
@@ -162,7 +162,7 @@
   function searchTweets(keyword, callback) {
     var newRequest = new Request();
     newRequest['type'] = "GET";
-    newRequest['url'] = "http://localhost:3000/tweets/search/"+keyword; 
+    newRequest['url'] = "http://localhost:80/tweets/search/"+keyword; 
     newRequest["success"] = function(response){
       console.log(response);
       return callback(response);

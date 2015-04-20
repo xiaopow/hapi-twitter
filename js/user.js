@@ -16,6 +16,14 @@
     }
   });
 
+  function profileCardChanger(username) {
+    $('.user-field .username').text(username);
+    $('.user-field .screenName').text('@'+username);
+    getUserTweets(username, function(response) {
+      $('.user-stats-tweets').text(response.length);
+    });
+  };
+
   $(document).on('click', '#log-out', function() {
     logoutUser(function(){
       authenticate(function(response) {
@@ -48,6 +56,9 @@
         $('.post-input').val('');
         getTweetsAndPost();
         charCount();
+        getUserTweets(currentUser, function(response) {
+        $('.user-stats-tweets').text(response.length);
+      });
       }
     });
   });
@@ -80,6 +91,7 @@
 
   $(document).on('click', '.navbar-brand', function() {
     getTweetsAndPost();
+    profileCardChanger(currentUser);
   });
 
   $(document).on('click', '.delete-tweet', function() {
@@ -87,6 +99,7 @@
       getTweetsAndPost();
     });
   });
+
 
   function getUserTweetsAndPost(username) {
     getUserTweets(username, function(response) {
@@ -117,10 +130,12 @@
 
   $(document).on('click', '.tweet-username', function() {
     getUserTweetsAndPost($(this).text());
+    profileCardChanger($(this).text());
   });
 
   $(document).on('click', '.username', function() {
     getUserTweetsAndPost($(this).text());
+    profileCardChanger($(this).text());
   });
 
   function searchTweetsAndPost(keyword) {

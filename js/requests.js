@@ -109,7 +109,6 @@
     newRequest['type'] = 'GET';
     newRequest['url'] = 'http://localhost:3000/tweets';
     newRequest['success'] = function(response){
-      // console.log(response);
       return callback(response);
     };
 
@@ -157,5 +156,19 @@
 
     $.ajax(newRequest);
   };  
+
+  //--------------- Search Tweet by Keyword --------------
+
+  function searchTweets(keyword, callback) {
+    var newRequest = new Request();
+    newRequest['type'] = "GET";
+    newRequest['url'] = "http://localhost:3000/tweets/search/"+keyword; 
+    newRequest["success"] = function(response){
+      console.log(response);
+      return callback(response);
+    };
+
+    $.ajax(newRequest);
+  };
 
 // });

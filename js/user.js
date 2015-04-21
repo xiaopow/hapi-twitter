@@ -1,4 +1,4 @@
-// $(document).ready(function(){
+$(document).ready(function(){
 
   var currentUser;
 
@@ -173,4 +173,4 @@
 
   getTweetsAndPost();
 
-// });
+});

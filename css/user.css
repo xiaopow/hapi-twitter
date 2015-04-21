@@ -1,6 +1,11 @@
 body {
   min-width: 900px;
-  background: #0084B4;
+  background-image: url(https://abs.twimg.com/images/themes/theme1/bg.png);
+  background-position: left 40px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: #C0DEED;
+
 }
 
 .navbar {
@@ -29,6 +34,10 @@ body {
   margin-top: 50px;
   padding-top: 10px;
   min-width: 1000px;
+}
+
+.profile-trends, .follow-footnote {
+  width: 290px;
 }
 
 .profileCard {
@@ -94,6 +103,10 @@ body {
 .trends-list {
   list-style: none;
   padding-left: 0;
+}
+
+.feed-box {
+  width: 600px;
 }
 
 .post-tweet-box {
